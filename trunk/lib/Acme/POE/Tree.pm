@@ -10,7 +10,7 @@ use IO::Tty;
 use constant CYCLE_TYPE => "random"; # "random" or "cycle"
 use constant LIGHT_TYPE => "strand"; # "random" or "strand"
 
-our $VERSION = 1.00;
+our $VERSION = '1.00';
 
 sub new {
 	my ($class, $arg) = @_;
