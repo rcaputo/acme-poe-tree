@@ -19,4 +19,9 @@ WriteMakefile(
 			'tee ./$(DISTNAME)-$(VERSION)/README > README'
 		),
 	},
+	PREREQ_PM     => {
+		'IO::Tty' => 1.07,
+		'Curses'  => 1.15,
+		'POE'     => 1.003,
+	},
 );
