@@ -9,6 +9,7 @@ use IO::Tty;
 
 use constant CYCLE_TYPE => "random"; # "random" or "cycle"
 use constant LIGHT_TYPE => "strand"; # "random" or "strand"
+use constant DIM_BULBS => 0; # enable dim bulbs
 
 our $VERSION = '1.01';
 
@@ -129,8 +130,13 @@ sub _cycle_lights {
 			$light->{lit} = !$light->{lit};
 			$light->{c_paint} = $light->{c_main} | ($light->{lit} ? A_BOLD : A_DIM);
 
-			attrset($light->{c_paint});
-			addstr($light->{y}, $light->{x}, "o");
+			if ($light->{lit} or DIM_BULBS) {
+				attrset($light->{c_paint});
+				addstr($light->{y}, $light->{x}, "o");
+			}
+			else {
+				addstr($light->{y}, $light->{x}, " ");
+			}
 		}
 	}
 	elsif (CYCLE_TYPE eq "cycle") {
@@ -140,8 +146,13 @@ sub _cycle_lights {
 			) || 0;
 			$light->{c_paint} = $light->{c_main} | ($light->{lit} ? A_BOLD : A_DIM);
 
-			attrset($light->{c_paint});
-			addstr($light->{y}, $light->{x}, "o");
+			if ($light->{lit} or DIM_BULBS) {
+				attrset($light->{c_paint});
+				addstr($light->{y}, $light->{x}, "o");
+			}
+			else {
+				addstr($light->{y}, $light->{x}, " ");
+			}
 		}
 
 		$heap->{light_cycle}++;
@@ -283,8 +294,13 @@ sub grow_tree {
 		$light->{lit} = 0;
 		$light->{c_paint} = $color | ($light->{lit} ? A_BOLD : A_DIM);
 
-		attrset($light->{c_paint});
-		addstr($light->{y}, $light->{x}, "o");
+		if ($light->{lit} or DIM_BULBS) {
+			attrset($light->{c_paint});
+			addstr($light->{y}, $light->{x}, "o");
+		}
+		else {
+			addstr($light->{y}, $light->{x}, " ");
+		}
 	}
 
 	# Put the star on top of the tree.
@@ -355,6 +371,7 @@ sub _handle_shut_down {
 	$_[KERNEL]->delay("light_cycle", undef);
 	$_[KERNEL]->delay("star_cycle", undef);
 }
+
 1;
 
 __END__
@@ -400,10 +417,22 @@ Run the tree until the user decides they've had enough.
 Rocco Caputo <rcaputo@cpan.org> with debugging and feedback from
 irc.perl.org channel #poe.
 
+=head1 BUG TRACKER
+
+https://rt.cpan.org/Dist/Display.html?Status=Active&Queue=Acme-POE-Tree
+
+=head1 REPOSITORY
+
+http://thirdlobe.com/svn/acme-poe-tree/
+
+=head1 OTHER RESOURCES
+
+http://search.cpan.org/dist/Acme-POE-Tree/
+
 =head1 COPYRIGHT
 
-Copyright (c) 2008, Rocco Caputo.  All Rights Reserved.  This module
-is free software.  It may be used, redistributed and/or modified under
-the same terms as Perl itself.
+Copyright (c) 2008-2009, Rocco Caputo.  All Rights Reserved.  This
+module is free software.  It may be used, redistributed and/or
+modified under the same terms as Perl itself.
 
 =cut
