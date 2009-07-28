@@ -11,7 +11,7 @@ use constant CYCLE_TYPE => "random"; # "random" or "cycle"
 use constant LIGHT_TYPE => "strand"; # "random" or "strand"
 use constant DIM_BULBS => 0; # enable dim bulbs
 
-our $VERSION = '1.01';
+our $VERSION = '1.020';
 
 sub new {
 	my ($class, $arg) = @_;
