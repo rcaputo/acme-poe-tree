@@ -11,7 +11,7 @@ use constant CYCLE_TYPE => "random"; # "random" or "cycle"
 use constant LIGHT_TYPE => "strand"; # "random" or "strand"
 use constant DIM_BULBS => 0; # enable dim bulbs
 
-our $VERSION = '1.020';
+our $VERSION = '1.021';
 
 sub new {
 	my ($class, $arg) = @_;
@@ -423,7 +423,7 @@ https://rt.cpan.org/Dist/Display.html?Status=Active&Queue=Acme-POE-Tree
 
 =head1 REPOSITORY
 
-http://thirdlobe.com/svn/acme-poe-tree/
+http://github.com/rcaputo/acme-poe-tree
 
 =head1 OTHER RESOURCES
 
@@ -431,7 +431,7 @@ http://search.cpan.org/dist/Acme-POE-Tree/
 
 =head1 COPYRIGHT
 
-Copyright (c) 2008-2009, Rocco Caputo.  All Rights Reserved.  This
+Copyright (c) 2008-2010, Rocco Caputo.  All Rights Reserved.  This
 module is free software.  It may be used, redistributed and/or
 modified under the same terms as Perl itself.
 
