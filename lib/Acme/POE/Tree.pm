@@ -193,7 +193,9 @@ sub grow_tree {
 		ioctl(STDOUT, &IO::Tty::Constant::TIOCGWINSZ, $winsize) or die $!;
 		($lines, $cols) = unpack("S2", $winsize);
 	};
-	resizeterm($lines, $cols);
+
+	# TODO - How to do this portably?
+	eval { resizeterm($lines, $cols) };
 
 	# Clear the screen in the default color.  Add vertical bars to
 	# either side of the screen, as this sometimes ensures erasure.
